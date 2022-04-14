@@ -1,2 +1,182 @@
 [InternetShortcut]
 URL=http://localhost:8888/notebooks/ITSCA%20Work%20Notebook.ipynb
+
+#Question 1.1
+
+import pandas as pd
+import numpy as np
+import matplotlib.pyplot as plt
+import statsmodels.api as sm
+import seaborn as sns
+
+from sklearn import datasets
+from sklearn.cluster import KMeans
+from sklearn.preprocessing import StandardScaler
+from sklearn.datasets.samples_generator import make_blobs
+
+SS = pd.read_csv('C:/Users/IMore/Downloads/all_sites_scores.csv')
+SS
+
+SS.describe()
+
+SS.info()
+
+SS.head()
+
+FS = pd.read_csv('C:/Users/IMore/Downloads/fandango_scrape.csv')
+FS
+
+FS.describe()
+
+
+
+FS.info()
+
+FS.head()
+
+#Question 1.2
+
+FS.plot(kind='scatter',x='RATING',y='VOTES', color = 'red') # scatter plot
+plt.title(" The relationship between popularity of a film and its rating")
+plt.legend()
+#plt.grid(True)
+plt.show
+
+#Quetion 1.3
+from pathlib import Path
+from textblob import TextBlob
+from nltk.corpus import stopwords
+import nltk
+
+blob = TextBlob(Path('C:/Users/IMore/Downloads/fandango_scrape.csv').read_text())
+
+nltk.download('stopwords')
+
+stop_words = stopwords.words('english')
+
+items = blob.word_counts.items()
+items
+
+items = [item for item in items if item[0] not in stop_words]
+items
+
+from operator import itemgetter
+
+sorted_items = sorted(items, key = itemgetter(1), reverse = True)
+sorted_items
+
+sorted_items.sort(key=None, reverse=False)
+sorted_items
+
+top20 = sorted_items[8:18]
+top20
+
+DS = pd.DataFrame(top20, columns = ['word','count'])
+DS
+
+#Question 1.4
+
+%matplotlib inline
+axes = DS.plot.bar(x='word', y='count', legend = False, color = 'darkblue')
+
+import matplotlib.pyplot as plt
+
+plt.gcf().tight_layout()
+
+#Question 1.5
+FV = pd.DataFrame(FS, columns = ['FILM','VOTES'])
+FV
+
+top10 = FV[0:11]
+top10
+
+#Question 1.6
+Zero = np.count_nonzero(FV==0)
+print(Zero,"movies have zero votes.")
+
+ZeroVotes = FV[435:]
+ZeroVotes
+
+#Quetion 1.7
+FS.plot(kind='hist',x='STARS',y='RATING', color = 'orange') 
+plt.title(""" distribution of ratings (STARS)
+          vs. 
+          what the true rating was from votes (RATING)""")
+plt.xlabel("STARS")
+plt.ylabel("RATING")
+plt.legend()
+plt.grid(False)
+plt.show
+
+#Quetion 1.8
+RFS =pd.DataFrame(round((FS['STARS']-FS['RATING']),1), columns = ['Difference'])
+RFS
+
+#Quetion 1.9
+
+sns.countplot(x = 'Difference', data = RFS)
+plt.show()
+
+#Quetion 1.10
+
+SS.plot(kind='scatter',x='Metacritic',y='Metacritic_User', color = 'green') # scatter plot
+plt.title(" The relationship between popularity of a film and its rating")
+plt.legend()
+plt.grid(False)
+plt.show
+
+#Quetion 1.11
+
+FS.plot(kind='barh',x='FILM',y='VOTES', color = 'green') 
+plt.title(" The relationship between popularity of a film and its rating")
+plt.legend()
+plt.grid(False)
+plt.show
+
+#Question 1.12
+
+plt.plot(SS['FILM'].iloc[1:5], SS['RottenTomatoes'].iloc[1:5]/20, marker = 'o', label = "RottentTomatoes")
+plt.plot(SS['FILM'].iloc[1:5], SS['RottenTomatoes_User'].iloc[1:5]/20, marker = 'o', label = "RottenTomatoes_User")
+plt.plot(SS['FILM'].iloc[1:5], SS['Metacritic'].iloc[1:5]/20, marker = 'o', label = 'Metacritic')
+plt.plot(SS['FILM'].iloc[1:5], SS['Metacritic_User'].iloc[1:5]/2, marker = 'o', label = 'Metacritic_User')
+plt.plot(SS['FILM'].iloc[1:5], SS['IMDB'].iloc[1:5]/2, marker = 'o', label = 'IMDB')
+
+plt.rcParams['figure.figsize'] = (30, 10)
+plt.ylabel("Rates")
+plt.xlabel("Movies")
+plt.legend()
+plt.show()
+
+
+#Quetion 1.13
+sns.kdeplot(x = SS.Metacritic_User, y = FS.STARS, style = True, color = 'crimson')
+
+#Quetion 1.14
+from matplotlib.gridspec import GridSpec
+
+df = pd.read_csv('C:/Users/IMore/Downloads/all_sites_scores.csv')
+
+fig = plt.figure()
+gs = GridSpec(4, 4)
+
+ax_scatter = fig.add_subplot(gs[1:4, 0:3])
+ax_hist_x = fig.add_subplot(gs[0,0:3])
+ax_hist_y = fig.add_subplot(gs[1:4, 3])
+
+ax_scatter.scatter(df['Metacritic_user_vote_count'], df['IMDB_user_vote_count'], color = 'red')
+
+ax_hist_x.hist(df['Metacritic_user_vote_count'], color = 'blue')
+ax_hist_y.hist(df['IMDB_user_vote_count'], orientation = 'horizontal', color = 'deeppink')
+
+plt.show()
+
+#Quetion 1.15
+
+SS.sort_values('RottenTomatoes', ascending = True, inplace = True)
+(SS.head(10))
+
+#Quetion 1.16
+
+SS.head(10).hist(color = 'maroon') 
+plt.show()
+
