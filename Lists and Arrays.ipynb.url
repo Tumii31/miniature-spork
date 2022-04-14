@@ -1,2 +1,120 @@
 [InternetShortcut]
 URL=http://localhost:8888/notebooks/Lists%20and%20Arrays.ipynb
+
+grade = float(input("Please input the grades "))
+
+
+thislist = [" "]
+print(len(thislist))
+
+
+grades =[] #[] #Create the variable grades and assign it the empty list
+num = float (input ("Enter the first grade:"))
+grades.append (num)
+num = float (input ("Enter the second grade:"))
+grades.append (num)
+num = float (input ("Enter the third grade:"))
+grades.append (num)
+num = float (input ("Enter the fourth grade:"))
+grades.append (num)
+num = float (input ("Enter the fith grade:"))
+grades.append (num)
+
+smallestGrade = min(grades)
+grades.remove(smallestGrade)
+smallestGrade = min(grades)
+grades.remove(smallestGrade)
+average = sum (grades)/len(grades)
+
+print("The average is:", average)
+
+
+grades
+
+
+import numpy as np
+grades = np.random.randint(60, 101,12).reshape(3,4)
+grades
+
+#Variety and variance
+import numpy as np
+grades = np.random.randint(60, 101,12).reshape(3,4)
+meangrades = grades.mean()
+
+print(grades)
+print(meangrades)
+
+grades.mean(axis-0)
+
+grades.mean(axis - 1)
+
+a = "Hello World"
+c = a[:5]      #c="Hello"
+d = a[5:]      #d="World"
+e = a[3:8]     #e="Lo Wo"
+
+
+
+a = "Hello World"
+c = a[5:]
+c
+
+a = "Eunice "
+b = "is a lecturer"
+a+b
+
+x = 8 
+y = 10
+z= x+y
+
+print("The value of x+y is: ",z)
+
+b.capitalize()
+
+b.title()
+
+a.index("E")
+
+values = "1\t2\t3\t4\t5"
+values.replace("\t", ",")
+
+name = "Eunice Mandiagu Kingenga"
+name.replace("Eunice", "EniKing")
+
+txt = "Hello, my name is Doreen, I am 26 years old"
+x = txt.split(", ")
+print(x)
+
+text = "this, day is, a sunny day"
+y = text.split(", ")
+print(y)
+
+type(y)
+
+mwords = ["Doreen", "had", "a", " little", "lamb"]
+" ".join(mwords)
+
+" + ".join(y)
+
+#Determine the output  displayed by the lines of code
+print("Python")
+var = "Enie"
+print(var)
+
+#Determine the value of the expression
+"Python"[4]
+"Hello Python"[9]
+"Python".find("tho")
+"smallElements".capitalize()
+"python/java/c++".split('/')
+
+#identify all errors
+phoneNumber = 234-5678
+ptint("My phone number is" + phoneNumber)
+
+for = "happily ever after"
+print("They lived" + for)
+
+The number of calories burned per hour by cycling, running and swimming are
+200, 475, 
+
