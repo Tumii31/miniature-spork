@@ -1,2 +1,16 @@
 [InternetShortcut]
 URL=http://localhost:8888/notebooks/Untitled21.ipynb
+
+#Create a TextBlob
+from textblob import TextBlob
+text = "Today is a beautiful day. Tomorrow, there might be bad weather."
+blob = TextBlob(text)
+blob
+
+#TextBlobs, sentences and words support string methods and can be compared with strings
+
+
+blob.sentences
+
+blob.words
+
