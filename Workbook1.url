@@ -1,2 +1,40 @@
 [InternetShortcut]
 URL=http://localhost:8888/notebooks/Untitled13.ipynb
+
+grade = float(input("Please input the grades "))
+
+
+thislist = [" "]
+print(len(thislist))
+
+
+grades =[] #[] #Create the variable grades and assign it the empty list
+num = float (input ("Enter the first grade:"))
+grades.append (num)
+num = float (input ("Enter the second grade:"))
+grades.append (num)
+num = float (input ("Enter the third grade:"))
+grades.append (num)
+num = float (input ("Enter the fourth grade:"))
+grades.append (num)
+num = float (input ("Enter the fith grade:"))
+grades.append (num)
+
+smallestGrade = min(grades)
+grades.remove(smallestGrade)
+smallestGrade = min(grades)
+grades.remove(smallestGrade)
+average = sum (grades)/len(grades)
+
+print("The average is:", average)
+
+
+grades
+
+
+import numpy as np
+grades = np.random.randint(60, 101,12).reshape(3,4)
+grades
+
+
+
