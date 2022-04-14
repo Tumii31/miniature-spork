@@ -1,2 +1,30 @@
 [InternetShortcut]
 URL=http://localhost:8888/notebooks/Untitled17.ipynb
+
+import pandas as pd
+import numpy as np
+from sklearn import datasets
+from sklearn.cluster import KMeans
+from sklearn.preprocessing import StandardScaler
+
+DS = pd.read_csv('C:/Users/IMore/Downloads/Marketing_data.csv')
+DS
+
+print(DS.BALANCE)
+
+DS.head()
+
+DS.describe()
+
+DS.info()
+
+kmeans_model = KMeans(n_clusters = 4)
+
+from sklearn.datasets.samples_generator import make_blobs
+
+x, y = make_blobs(n_samples = 8949, cluster_std = 1.00, random_state = 12)
+
+plt.scatter(x[:,0],x[:,1])
+
+
+
