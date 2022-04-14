@@ -1,2 +1,88 @@
 [InternetShortcut]
 URL=http://localhost:8888/notebooks/ITSCA%20-%20File%20creation.ipynb
+
+#example_file creation
+content = '''I'm a student doing my second year at Eduvos. 
+I am learning Python.
+Which is the main programming for Data Scienece.
+It is easy to learn and understand.
+It also supports Object Orientated Programming, 
+which is also used in web development'''
+
+f = open('Myfile.txt', 'w') #create file for writing
+f.write(content) #write content in the file
+f.close() #close the file
+f = open('Myfile.txt') #open the file for reading
+
+while True:
+    line = f.readline() #reads the lines in the file
+    if len(line) == 0:
+        break
+    else:
+        print(line,) #prints the line
+f.close() #close the file
+
+
+
+#IDError exception will get back to exceptions
+import sys
+try:
+    f = open('Myfile.txt', 'r')
+    lines = f.readlines()
+except IDError:
+    print('File Myfile.txt does not exist')
+    sys.exit(1)
+f.close()
+
+print('The contents in the file are:', lines)
+print('\n The contents in the file are:')
+
+for line in lines:
+    sys.stdout.write(line)
+print('\n\n The contents in the file are:')
+for i in range(0, len(lines)):
+    sys.stdout.write(lines[i])
+    
+
+#Append content on the file
+#fileappend.py
+
+import sys
+appendContent = ''' I am ecstatic to be studying my IT degree at Eduvos'''
+
+f = open('Myfile.txt', 'a')
+f.write('\n%s' %appendContent)
+f.close()
+
+f= open('Myfile.txt', 'r')
+lines = f.readlines()
+f.close()
+
+print('The contents in the file are:')
+for line in lines:
+    sys.stdout.write(line)
+
+#We can copy a file and give it another name and also delete the content of a file
+#Mtfile.txt
+#filecopy.py
+
+f = open('Myfile.txt', 'r')
+lines = f.read()
+f.close()
+
+g = open('copyMyfile.txt', 'w')
+g.write(lines)
+g.close()
+
+print('The copy of the file is made')
+g = open('copyMyfile.txt.', 'r')
+lines = g.read()
+print(lines)
+
+g.close()
+
+#
+
+
+
+
